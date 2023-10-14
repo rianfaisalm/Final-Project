@@ -1,10 +1,14 @@
 import React from "react";
-import Footer from './Footer';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Homepage = () => {
     return (
         <>
-        <h1>Ini Homepage</h1>
+        <Navbar />
+        <div>
+            <h1>Ini homepage</h1>
+        </div>
         <Footer />
         </>
     );

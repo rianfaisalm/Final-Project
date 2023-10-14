@@ -1,9 +1,11 @@
 import React from "react";
-import Footer from './Footer';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Register = () => {
     return (
         <>
+        <Navbar />
         <h1>Ini Register</h1>
         <Footer />
         </>

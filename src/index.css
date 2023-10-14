@@ -1,11 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: black;
+  background: #ffffff; 
+  background-size: cover;
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,29 +22,32 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #030308;
   text-decoration: inherit;
+  
 }
 a:hover {
-  color: #535bf2;
+  color: #646cff;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  max-width: 100%; 
+  margin: 0 auto;
+  padding: 0 auto;
+  /* display: flex; */
+  /* place-items: center; */
+  /* min-width: 320px;
+  min-height: 100vh; */
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 4em;
   line-height: 1.1;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: 20px;
+  border: 0.001em solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -58,12 +67,13 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    color-scheme: light dark;
+    background: url("data:imagae/jpeg;base64,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");
   }
   a:hover {
-    color: #747bff;
+    color: #3339a7;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #693b3b;
   }
 }
