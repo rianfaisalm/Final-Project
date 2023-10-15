@@ -96,6 +96,9 @@ const Navbar = () => {
         </div>
       </div>
       <div style={rightLinkStyle}>
+        <Link to={"/"} style={linkMargin}>
+          <h2>Food</h2>
+        </Link>
         <Link to={"/register"} style={linkMargin}>
           <h2>Register</h2>
         </Link>
