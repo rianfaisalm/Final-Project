@@ -1,5 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -57,23 +60,26 @@ const Navbar = () => {
   const searchInputStyle = {
     border: 'none',
     borderRadius: '24px',
-    fontSize: '18px', // Sesuaikan ukuran font sesuai keinginan Anda
-    padding: '10px', // Sesuaikan padding sesuai keinginan Anda
+    fontSize: '18px', 
+    padding: '10px', 
   };
   
   const searchIconStyle = {
     backgroundColor: 'transparent',
     borderRadius: '24px',
     border: 'none',
-    fontSize: '24px', // Sesuaikan ukuran font sesuai keinginan Anda
-    padding: '10px', // Sesuaikan padding sesuai keinginan Anda
+    fontSize: '24px',
+    padding: '10px', 
   };
 
   return (
     <nav className="max-w-screen-xl px-4 mx-auto" style={navbarStyle}>
       <div style={leftLinkStyle}>
         <Link to={"/"} style={linkMargin}>
-          <h2 style={logoStyle}>yummy time</h2>
+          <h2 style={logoStyle}>
+          <FontAwesomeIcon icon={faStroopwafel} style={{ marginRight: '8px' }} />
+          yummy time
+          </h2>
         </Link>
       </div>
       <div style={searchStyle}>
@@ -97,7 +103,10 @@ const Navbar = () => {
       </div>
       <div style={rightLinkStyle}>
         <Link to={"/"} style={linkMargin}>
-          <h2>Food</h2>
+          <h2>
+          <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px' }} />
+          Recommended
+          </h2>
         </Link>
         <Link to={"/register"} style={linkMargin}>
           <h2>Register</h2>
