@@ -9,8 +9,8 @@ const Homepage = () => {
   const navigate = useNavigate();
 
   const getAllFoods = () => {
-    const JWT_TOKEN = "your_jwt_token";
-    const API_KEY = "your_api_key";
+    const JWT_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpYW5AZ21haWwuY29tIiwidXNlcklkIjoiZmIzYzEyOTUtZDUxOC00OGViLTg5OTQtOWI3N2M2OGJhZDg2Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk4MzI4Nzk5fQ.iMvlPGdg8xt87vkieEGDQN73tIRbO0uQvvOEW0vlSJ0";
+    const API_KEY = "w05KkI9AWhKxzvPFtXotUva-";
 
     axios
       .get("https://api-bootcamp.do.dibimbing.id/api/v1/foods", {
@@ -21,7 +21,7 @@ const Homepage = () => {
       })
       .then((res) => {
         console.log("Response API:", res.data);
-        const data = res?.data?.item?.find((item) => item.name === "Get All Foods")?.response || [];
+        const data = res?.data?.data;
         setFoods(data);
   })
       .catch((err) => {
