@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import Footer from "../components/Footer";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); // Mengganti username menjadi email
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
   const navigate = useNavigate();
@@ -19,21 +19,39 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
+    if (!email || !password) {
+      setErr("Please fill in both email and password fields."); // Mengganti username menjadi email
+      return;
+    }
+
     const payload = {
-      username: email,
+      email: email, // Mengganti username menjadi email
       password: password,
     };
 
+    // JWT Token dan API Key
+    const JWT_TOKEN =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpYW5AZ21haWwuY29tIiwidXNlcklkIjoiZmIzYzEyOTUtZDUxOC00OGViLTg5OTQtOWI3c2M2OGJhZDg2Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk4MzI4Nzk5fQ.iMvlPGdg8xt87vkieEGDQN73tIRbO0uQvvOEW0vlSJ0";
+    const API_KEY = "w05KkI9AWhKxzvPFtXotUva-";
+
+    // Menyertakan JWT Token dan API Key dalam header permintaan
+    const config = {
+      headers: {
+        Authorization: `Bearer ${JWT_TOKEN}`,
+        apiKey: API_KEY,
+      },
+    };
+
     axios
-      .post("https://api-bootcamp.do.dibimbing.id/api/v1/login", payload)
+      .post("https://api-bootcamp.do.dibimbing.id/api/v1/login", payload, config)
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.data.token);
-        navigate("/");
+        navigate("/"); // Arahkan ke halaman utama setelah berhasil login
       })
       .catch((err) => {
         console.log(err.message);
-        setErr("Login failed. Please check your username and password.");
+        setErr("Login failed. Please check your email and password."); // Mengganti username menjadi email
       });
   };
 
@@ -81,7 +99,7 @@ const Login = () => {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <input
               onChange={handleChangeEmail}
-              placeholder="Enter your username"
+              placeholder="Enter your email" // Mengganti username menjadi email
               style={inputStyle}
             />
             <input

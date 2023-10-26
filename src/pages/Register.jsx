@@ -8,7 +8,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState(""); // Tambahkan state untuk passwordRepeat
+  const [passwordRepeat, setPasswordRepeat] = useState("");
   const [err, setErr] = useState("");
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const Register = () => {
     setPassword(e.target.value);
   };
 
-  const handleChangePasswordRepeat = (e) => { // Handler perubahan untuk passwordRepeat
+  const handleChangePasswordRepeat = (e) => {
     setPasswordRepeat(e.target.value);
   };
 
@@ -38,7 +38,7 @@ const Register = () => {
       name: name,
       email: email,
       password: password,
-      passwordRepeat: passwordRepeat, // Tambahkan passwordRepeat ke objek payload
+      passwordRepeat: passwordRepeat, // Pastikan passwordRepeat disertakan dalam objek payload
       role: "2",
     };
 
@@ -53,7 +53,7 @@ const Register = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.data.token);
-        navigate("/");
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err.message);
@@ -121,7 +121,7 @@ const Register = () => {
             />
             <input
               onChange={handleChangePasswordRepeat}
-              placeholder="Repeat your password" // Tambahkan input untuk password repeat
+              placeholder="Repeat your password"
               style={inputStyle}
               type="password"
             />
