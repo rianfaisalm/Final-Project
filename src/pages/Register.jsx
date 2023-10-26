@@ -6,8 +6,9 @@ import Footer from "../components/Footer";
 
 const Register = () => {
   const [name, setName] = useState("");
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState(""); // Tambahkan state untuk passwordRepeat
   const [err, setErr] = useState("");
   const navigate = useNavigate();
 
@@ -15,32 +16,48 @@ const Register = () => {
     setName(e.target.value);
   };
 
-  const handleChangeUserName = (e) => {
-    setUserName(e.target.value);
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handleChangePass = (e) => {
+  const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
 
+  const handleChangePasswordRepeat = (e) => { // Handler perubahan untuk passwordRepeat
+    setPasswordRepeat(e.target.value);
+  };
+
   const handleSubmit = () => {
+    if (password !== passwordRepeat) {
+      setErr("Password and password repeat do not match.");
+      return;
+    }
+
     const payload = {
       name: name,
-      username: userName,
+      email: email,
       password: password,
-      roleId: 2,
+      passwordRepeat: passwordRepeat, // Tambahkan passwordRepeat ke objek payload
+      role: "2",
+    };
+
+    const config = {
+      headers: {
+        apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+      },
     };
 
     axios
-      .post("https://api.mudoapi.tech/register", payload)
+      .post("https://api-bootcamp.do.dibimbing.id/api/v1/register", payload, config)
       .then((res) => {
         console.log(res);
+        localStorage.setItem("token", res.data.data.token);
+        navigate("/");
       })
       .catch((err) => {
-        localStorage.setItem("token", "abcdefege");
-        navigate("/");
         console.log(err.message);
-        setErr(err.message);
+        setErr("Registration failed. Please check your information.");
       });
   };
 
@@ -92,14 +109,21 @@ const Register = () => {
               style={inputStyle}
             />
             <input
-              onChange={handleChangeUserName}
-              placeholder="Enter your username"
+              onChange={handleChangeEmail}
+              placeholder="Enter your email"
               style={inputStyle}
             />
             <input
-              onChange={handleChangePass}
+              onChange={handleChangePassword}
               placeholder="Enter your password"
               style={inputStyle}
+              type="password"
+            />
+            <input
+              onChange={handleChangePasswordRepeat}
+              placeholder="Repeat your password" // Tambahkan input untuk password repeat
+              style={inputStyle}
+              type="password"
             />
           </div>
           {!!err.length && (

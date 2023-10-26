@@ -25,7 +25,7 @@ const Login = () => {
     };
 
     axios
-      .post()
+      .post("https://api-bootcamp.do.dibimbing.id/api/v1/login", payload)
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.data.token);
@@ -77,9 +77,7 @@ const Login = () => {
       <Navbar />
       <div style={containerStyle}>
         <div style={cardStyle}>
-          <h1 style={titleStyle}>
-            Sign in to your account
-          </h1>
+          <h1 style={titleStyle}>Sign in to your account</h1>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <input
               onChange={handleChangeEmail}
@@ -92,9 +90,9 @@ const Login = () => {
               style={inputStyle}
             />
           </div>
-          {/* {!!err.length && (
+          {!!err.length && (
             <h3 style={{ color: "red", textAlign: "center" }}>{err}</h3>
-          )} */}
+          )}
           <div style={{ textAlign: "center" }}>
             <button onClick={handleSubmit} style={buttonStyle}>
               Login
