@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import Footer from "../components/Footer";
 
 const Login = () => {
-  const [email, setEmail] = useState(""); // Mengganti username menjadi email
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
   const navigate = useNavigate();
@@ -20,21 +20,19 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (!email || !password) {
-      setErr("Please fill in both email and password fields."); // Mengganti username menjadi email
+      setErr("Please fill in both email and password fields.");
       return;
     }
 
     const payload = {
-      email: email, // Mengganti username menjadi email
+      email: email,
       password: password,
     };
 
-    // JWT Token dan API Key
-    const JWT_TOKEN =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpYW5AZ21haWwuY29tIiwidXNlcklkIjoiZmIzYzEyOTUtZDUxOC00OGViLTg5OTQtOWI3c2M2OGJhZDg2Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk4MzI4Nzk5fQ.iMvlPGdg8xt87vkieEGDQN73tIRbO0uQvvOEW0vlSJ0";
+    const JWT_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiYW5nQGdtYWlsLmNvbSIsInVzZXJJZCI6IjkyODE3OTZlLWIzMDQtNDA5Ni05MGQ5LTQ3Mzk2MTYwMDg3NyIsInJvbGUiOiIyIiwiaWF0IjoxNjk4NTA0MjYxfQ.wkoCRz1ctNYd5rgqW7QOPdbO0mDjIVsk0nCrQtCujeQ";
+
     const API_KEY = "w05KkI9AWhKxzvPFtXotUva-";
 
-    // Menyertakan JWT Token dan API Key dalam header permintaan
     const config = {
       headers: {
         Authorization: `Bearer ${JWT_TOKEN}`,
@@ -45,13 +43,19 @@ const Login = () => {
     axios
       .post("https://api-bootcamp.do.dibimbing.id/api/v1/login", payload, config)
       .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", res.data.data.token);
-        navigate("/"); // Arahkan ke halaman utama setelah berhasil login
+        console.log("Response Data:", res.data);
+
+        if (res.data && res.data.token) {
+          // Simpan token ke localStorage
+          localStorage.setItem("token", res.data.token);
+          navigate("/");
+        } else {
+          setErr("Invalid response data");
+        }
       })
       .catch((err) => {
-        console.log(err.message);
-        setErr("Login failed. Please check your email and password."); // Mengganti username menjadi email
+        console.error(err); // Tampilkan kesalahan ke konsol
+        setErr("Login failed. Please check your email and password.");
       });
   };
 
@@ -99,7 +103,7 @@ const Login = () => {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <input
               onChange={handleChangeEmail}
-              placeholder="Enter your email" // Mengganti username menjadi email
+              placeholder="Enter your email"
               style={inputStyle}
             />
             <input

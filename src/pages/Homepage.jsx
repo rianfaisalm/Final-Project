@@ -9,7 +9,7 @@ const Homepage = () => {
   const navigate = useNavigate();
 
   const getAllFoods = () => {
-    const JWT_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpYW5AZ21haWwuY29tIiwidXNlcklkIjoiZmIzYzEyOTUtZDUxOC00OGViLTg5OTQtOWI3N2M2OGJhZDg2Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk4MzI4Nzk5fQ.iMvlPGdg8xt87vkieEGDQN73tIRbO0uQvvOEW0vlSJ0";
+    const JWT_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZnRhaEBnbWFpbC5jb20iLCJ1c2VySWQiOiIwMDY1Yzg4Mi02OTlkLTRkZmMtYjRkNy0zM2Q5Mzc1M2MxMTIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTg1MDA2MDF9.XTbJtGM5o2WSGVPYZTJ-912lkaASdUAiGp5-gs8EbhE";
     const API_KEY = "w05KkI9AWhKxzvPFtXotUva-";
 
     axios
@@ -37,21 +37,61 @@ const Homepage = () => {
     getAllFoods();
   }, []);
 
+  const cardStyle = {
+    width: "18rem",
+    margin: "0 auto",
+    border: "2px solid #ccc",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+  };
+  
+  const imageStyle = {
+    height: "10rem",
+    objectFit: "cover", 
+    borderRadius: "10px 10px 0 0", 
+  };
+
   return (
     <>
-        <Navbar />
-        <div>
-        <h1>Ini Homepage</h1>
-        {foods.map((food, key) => (
-            <div key={key} style={{ marginBottom: "40px" }}>
-            <h3>{food.name}</h3>
-            <p>{food.description}</p>
-            <img src={food.imageUrl} alt={food.name} style={{ maxWidth: '100%' }} />
-            <button onClick={() => handleDetail(food.id)}>Detail</button>
+      <Navbar />
+      <div style={{ textAlign: "center" }}>
+        <h1 style={{ marginTop: "80px", marginBottom: "20px", fontSize: "36px", color: "black" }}>
+          Hello! Yummy Time
+        </h1>
+
+        <div className="row" style={{ display: "flex", flexWrap: "wrap" }}>
+          {foods.map((food, key) => (
+            <div
+              key={key}
+              className="col-lg-4 col-md-6 col-sm-12 col-12"
+              style={{ marginBottom: "20px", flex: "0 0 33.33%" }}
+            >
+              <div className="card" style={cardStyle}>
+                <img
+                  className="card-img-top"
+                  alt="..."
+                  style={imageStyle}
+                  src={food?.imageUrl}
+                />
+                <div className="card-body">
+                <h5 className="card-title">{food.type}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">{food.name}</h6>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <button
+                      onClick={() => handleDetail(food.id)}
+                      className="btn btn-primary"
+                      style={{ marginRight: "10px" }}
+                    >
+                      Detail
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-        ))}
+          ))}
         </div>
-        <Footer />
+      </div>
+      <Footer />
     </>
   );
 };
