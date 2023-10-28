@@ -74,8 +74,7 @@ const Homepage = () => {
                   src={food?.imageUrl}
                 />
                 <div className="card-body">
-                <h5 className="card-title">{food.type}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted">{food.name}</h6>
+                  <h4 className="card-subtitle mb-2 text-muted">{food.name}</h4>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <button
                       onClick={() => handleDetail(food.id)}

@@ -5,7 +5,7 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import { useRoutes } from "react-router";
 import "./App.css";
-import UserDetail from "./pages/Userdetail";
+import FoodDetail from "./pages/Fooddetail";
 import ProtectedRoute from "./routes/Protectedroute";
 import Register from "./pages/Register";
 
@@ -24,7 +24,7 @@ const routes = [
     path: "/detail/:FOOD_ID",
     element: (
       <ProtectedRoute>
-        <UserDetail />
+        <FoodDetail />
       </ProtectedRoute>
     ),
   },
