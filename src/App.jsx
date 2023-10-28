@@ -21,7 +21,7 @@ const routes = [
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   {
-    path: "/detail/:userId",
+    path: "/detail/:FOOD_ID",
     element: (
       <ProtectedRoute>
         <UserDetail />
