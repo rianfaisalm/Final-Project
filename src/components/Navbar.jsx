@@ -82,7 +82,7 @@ const Navbar = () => {
           </h2>
         </Link>
       </div>
-      <div style={searchStyle}>
+      {/* <div style={searchStyle}>
         <div className="input-group navbar-input">
           <input
             type="search"
@@ -100,7 +100,7 @@ const Navbar = () => {
             <i className="bi bi-search"></i>
           </span>
         </div>
-      </div>
+      </div> */}
       <div style={rightLinkStyle}>
         <Link to={"/"} style={linkMargin}>
           <h2>

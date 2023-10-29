@@ -91,7 +91,7 @@ const FoodDetail = () => {
   return (
     <>
       <Navbar />
-      <div style={{ marginTop: "20px", backgroundColor: "#f8f9fa", padding: "20px", borderRadius: "5px" }}>
+      <div style={{ marginTop: "20px", marginBottom: "20px", backgroundColor: "#f8f9fa", padding: "20px", borderRadius: "5px" }}>
         <h1>{food?.name}</h1>
         <h4>{food?.type}</h4>
         <img style={{ width: "300px" }} src={food?.imageUrl} alt={food?.name} />
