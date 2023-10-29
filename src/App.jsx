@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import { useRoutes } from "react-router";
 import "./App.css";
 import FoodDetail from "./pages/Fooddetail";
-import ProtectedRoute from "./routes/Protectedroute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import Register from "./pages/Register";
 
 const routes = [
