@@ -79,7 +79,7 @@ const Homepage = () => {
                     <button
                       onClick={() => handleDetail(food.id)}
                       className="btn btn-primary"
-                      style={{ marginRight: "10px" }}
+                      style={{ marginRight: "10px", background: "#FF6666",color: "#fff"}}
                     >
                       Detail
                     </button>

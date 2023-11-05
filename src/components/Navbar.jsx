@@ -122,7 +122,7 @@ const Navbar = () => {
             margin: "10px",
             background: "#00FF00",
             border: "none",
-            color: "#fff",
+            color: "#000000",
             cursor: "pointer",
           }}
         >
